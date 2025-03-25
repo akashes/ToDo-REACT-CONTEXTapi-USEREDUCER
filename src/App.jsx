@@ -33,7 +33,7 @@ function App() {
 
   return (
     <main className='my-10'>
-    <h1 className='text-3xl font-bold mx-auto max-w-sm'>Manage Your Todos</h1>
+    <h1 className='text-3xl text-center font-bold mx-auto max-w-sm'>Manage Your Todos</h1>
  <div className='flex m-[10px] sm:m-[50px] flex-col  sm:flex-row gap-2'>
  <div className='sm:w-[70%] h-[50vh]'>
    <Form/>

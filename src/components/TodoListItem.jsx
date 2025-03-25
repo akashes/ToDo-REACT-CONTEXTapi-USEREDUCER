@@ -24,13 +24,13 @@ const TodoListItem = ({item,dispatch}) => {
      console.log(item.checked)
      !item.checked ? dispatch({type:'CHECK_ITEM',payload:item.id}) : dispatch({type:'UNCHECK_ITEM',payload:item.id})
     }} checked={item?.checked}  />
-    <input ref={inputRef} disabled={disableInput} onChange={(e)=>{
+    <input ref={inputRef} disabled={disableInput || item.checked} onChange={(e)=>{
      console.log(e.target)
      dispatch({type:'EDIT_ITEM',payload:{id:item.id,value:e.target.value}})
-    }} className={`${item?.checked ? 'line-through' : ''} focus:outline-0 w-full rounded-lg  ps-2 ${!disableInput && 'bg-gray-200 text-gray-600'} `} type="text" value={item?.todo} />
+    }} className={`${item?.checked ? 'line-through' : ''} focus:outline-0 w-full rounded-lg  ps-2 ${!disableInput && !item.checked && 'bg-gray-200 text-gray-600'} `} type="text" value={item?.todo} />
     </div>
     <div className='flex-1/5 flex justify-end'>
-     <button onClick={()=>setDisableInput(prev=>!prev)} className='border-1 p-1 m-1 rounded-lg'>
+     <button disabled={item.checked} onClick={()=>setDisableInput(prev=>!prev)} className={`border-1 p-1 m-1 rounded-lg ${item.checked && 'hidden'}`}>
          <MdEdit/>
      </button>
      <button onClick={()=>dispatch({type:'REMOVE_TODO',payload:item.id})} className='border-1 p-1 m-1 rounded-lg'>
